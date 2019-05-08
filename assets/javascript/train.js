@@ -1,16 +1,19 @@
 // Initialize firebase config
 
-const firebaseConfig = {
-    apiKey: "AIzaSyCeX8mD6AQMnPRwuJ-dZ52u8rdCl0fUqyA",
-    authDomain: "train-schedule-e5713.firebaseapp.com",
-    databaseURL: "https://train-schedule-e5713.firebaseio.com",
-    projectId: "train-schedule-e5713",
-    storageBucket: "train-schedule-e5713.appspot.com",
-    messagingSenderId: "337489442744",
-    appId: "1:337489442744:web:1b6dcb6c0b7103a7"
+var firebaseConfig = {
+    apiKey: "AIzaSyA3J5DQvU80_OCmBOZ5aHaNOiMEn9L4KLE",
+    authDomain: "test-35344.firebaseapp.com",
+    databaseURL: "https://test-35344.firebaseio.com",
+    projectId: "test-35344",
+    storageBucket: "test-35344.appspot.com",
+    messagingSenderId: "942741665210",
+    appId: "1:942741665210:web:3e19d87e21e2ec16"
   };
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
+  console.log(firebaseConfig);
 
   var database = firebase.database();
 
@@ -33,4 +36,16 @@ const firebaseConfig = {
 
       database.ref().push(newTrain);
 
+      console.log(newTrain.train);
+      console.log(newTrain.destination);
+      console.log(newTrain.firstTrain);
+      console.log(newTrain.frequency);
+
+});
+
+database.ref().on('child_added', function(childSanpshot){
+
+    console.log(childSanpshot.val());
+
+    
 });
