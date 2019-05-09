@@ -36,10 +36,10 @@ var firebaseConfig = {
 
       database.ref().push(newTrain);
 
-      console.log(newTrain.train);
-      console.log(newTrain.destination);
-      console.log(newTrain.firstTrain);
-      console.log(newTrain.frequency);
+    //   console.log(newTrain.train);
+    //   console.log(newTrain.destination);
+    //   console.log(newTrain.firstTrain);
+    //   console.log(newTrain.frequency);
 
 });
 
@@ -47,5 +47,20 @@ database.ref().on('child_added', function(childSanpshot){
 
     console.log(childSanpshot.val());
 
+    var newTrain = childSanpshot.val().train;
+    var trainDestination = childSanpshot.val().destination;
+    var trainStart = childSanpshot.val().firstTrain;
+    var trainFrequency = childSanpshot.val().frequency;
+
+    console.log(newTrain, trainDestination,trainStart, trainFrequency);
+
+    var row = $("<tr>").append(
+        $("<td>").text(newTrain),
+        $("<td>").text(trainDestination),
+        $("<td>").text(trainFrequency),
+        $("<td>").text("Next Train"),
+        $("<td>").text("Arives in...")
+    )
     
+    $("#train-table > tbody").append(row);
 });
