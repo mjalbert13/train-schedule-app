@@ -52,7 +52,7 @@ database.ref().on('child_added', function(childSanpshot){
     var trainFrequency = childSanpshot.val().frequency;
 
   
-    var formatTime = moment(trainStart, "HH:mm A").subtract(1,"years");
+    var formatTime = moment(trainStart, "hh:mm A").subtract(1,"years");
     // console.log("Foramt time: "+formatTime);
     
     var trainTime = moment(formatTime).format("HH:mm");
@@ -67,7 +67,7 @@ database.ref().on('child_added', function(childSanpshot){
     var arivesIn = trainFrequency - minLeft;
     // console.log("time left "+timeLeft);
 
-    var nextTrain = moment().add(arivesIn, "m").format("HH:mm");
+    var nextTrain = moment().add(arivesIn, "m").format("hh:mm A");
     
    
     var row = $("<tr>").append(

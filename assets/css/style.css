@@ -1,0 +1,15 @@
+body {
+    background: gray;
+}
+
+.container {
+    background: rgb(42, 124, 151);
+}
+
+.jumbotron {
+    background: lightskyblue;
+    
+}
+.card-header {
+    background: lightgray;
+}
