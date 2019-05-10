@@ -51,23 +51,25 @@ database.ref().on('child_added', function(childSanpshot){
     var trainStart = childSanpshot.val().firstTrain;
     var trainFrequency = childSanpshot.val().frequency;
 
-    var time = moment().valueOf();
-    console.log(moment(time).format("HH:mm"));
-    console.log(trainStart);
+  
+    var formatTime = moment(trainStart, "HH:mm A").subtract(1,"years");
+    // console.log("Foramt time: "+formatTime);
     
-    var formatTime = moment(trainStart, "hh:mm").subtract(1,"years");
-    console.log(formatTime);
+    var trainTime = moment(formatTime).format("HH:mm");
+    // console.log("train time "+trainTime);
     
-    var trainTime = moment().diff(moment(trainStart, "X"),"minutes");
-    console.log(trainTime);
-    
-    var niceTrain = moment(trainTime, "hh:mm").subtract(1, "years");
-    console.log(niceTrain);
+    var diff = moment().diff(moment(formatTime), "minutes");
+    // console.log("diff "+diff);
 
-    var nextTrain;
+    var minLeft = diff % trainFrequency; 
+    // console.log("mins left "+ minLeft);
+
+    var arivesIn = trainFrequency - minLeft;
+    // console.log("time left "+timeLeft);
+
+    var nextTrain = moment().add(arivesIn, "m").format("HH:mm");
     
-    var arivesIn = nextTrain - time;
-    
+   
     var row = $("<tr>").append(
         $("<td>").text(newTrain),
         $("<td>").text(trainDestination),
@@ -77,4 +79,10 @@ database.ref().on('child_added', function(childSanpshot){
     )
     
     $("#train-table > tbody").append(row);
+
+    
+    $("#train-name-input").val("");
+    $("#destination-input").val("");
+    $("#train-start-input").val("");
+    $("#frequency-input").val("");
 });
